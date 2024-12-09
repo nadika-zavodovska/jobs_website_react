@@ -6,8 +6,8 @@ import Navbar from '../components/Navbar';
 const MainLayout = () => {
   return (
     <>
-        <Navbar />
-        <Outlet />
+      <Navbar />
+      <Outlet />
       <ToastContainer />
     </>
   )

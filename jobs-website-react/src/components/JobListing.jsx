@@ -22,7 +22,6 @@ const JobListing = ({ job }) => {
                     className="text-indigo-500 mb-5 hover:text-indigo-600">
                     {showFullDescription ? "Less" : "More"}
                 </button>
-
                 <h3 className="text-indigo-500 mb-2">{job.salary} / Year</h3>
                 <div className="border border-gray-100 mb-5"></div>
                 <div className="flex flex-col lg:flex-row justify-between mb-4">

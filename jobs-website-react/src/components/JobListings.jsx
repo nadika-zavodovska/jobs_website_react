@@ -39,4 +39,4 @@ const JobListings = ({ isHome = false }) => {
     );
 }
 
-export default JobListings
+export default JobListings;
