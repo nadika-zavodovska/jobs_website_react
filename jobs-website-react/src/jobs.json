@@ -82,20 +82,6 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
-      "id": "504c",
-      "title": "Web Developer",
-      "type": "Part-Time",
-      "location": "ITway",
-      "description": "Job Description for Web Developer Job Description for Web Developer Job Description for Web Developer Job Description for Web Developer",
-      "salary": "$70K - 80K",
-      "company": {
-        "name": "IT company",
-        "description": "ITway Description ITway Description ITway Description ITway Description ITway Description",
-        "contactEmail": "itway@gmail.com",
-        "contactPhone": "07388260777"
-      }
     }
   ]
 }
