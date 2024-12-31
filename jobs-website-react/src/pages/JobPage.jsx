@@ -1,6 +1,9 @@
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
-import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+// Integrated JobsContext
+import { useContext } from "react";
+import { JobsContext } from "../contexts/jobs.context";
 
 /**
  *
@@ -9,10 +12,21 @@ import { toast } from "react-toastify";
  * 2. Use delete job function to delete the job from the context and redirect to the jobs page
  */
 
-const JobPage = ({ deleteJob }) => {
+const JobPage = () => {
   const navigate = useNavigate();
+  // Retrieve the job by id
   const { id } = useParams();
-  const job = useLoaderData();
+  const { jobs, setJobs } = useContext(JobsContext);
+
+  // Find the job based on the ID from params
+  const job = jobs.find((job) => job.id === id);
+  // The job's ID from the URL is used to look up the matching job in the list of jobs. This means we don’t need to use useLoaderData or fetch the job details from an API.
+  // const job = useLoaderData();
+
+  const deleteJob = (jobId) => {
+    // Filter out the deleted job and update state
+    setJobs((prevJobs) => prevJobs.filter((job) => job.id !== jobId));
+  };
 
   const onDeleteClick = (jobId) => {
     const confirm = window.confirm(
@@ -28,8 +42,22 @@ const JobPage = ({ deleteJob }) => {
     navigate("/jobs");
   };
 
+  if (!job) {
+    return (
+      <div className="container m-auto py-6 px-6">
+        <p>Job not found</p>
+        <Link
+          to="/jobs"
+          className="text-teal-500 hover:text-teal-600 flex items-center"
+        >
+          <FaArrowLeft className="mr-2" /> Back to Job Listings
+        </Link>
+      </div>
+    );
+  }
+
   return (
-    <>
+    <>   
       <section>
         <div className="container m-auto py-6 px-6">
           <Link
@@ -103,10 +131,12 @@ const JobPage = ({ deleteJob }) => {
   );
 };
 
-const jobLoader = async ({ params }) => {
-  const res = await fetch(`/api/jobs/${params.id}`);
-  const data = await res.json();
-  return data;
-};
+// const jobLoader = async ({ params }) => {
+//   const res = await fetch(`/api/jobs/${params.id}`);
+//   const data = await res.json();
+//   return data;
+// };
 
-export { JobPage as default, jobLoader };
+// export { JobPage as default, jobLoader };
+
+export default JobPage;
