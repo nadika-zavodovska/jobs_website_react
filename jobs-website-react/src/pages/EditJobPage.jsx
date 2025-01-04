@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { JobsContext } from "../contexts/jobs.context";
 
 /**
  * Assignment:
@@ -9,25 +10,33 @@ import { toast } from "react-toastify";
  */
 
 const EditJobPage = () => {
-  const job = useLoaderData();
+
+  // Extract the job ID from the URL params
+  const { id } = useParams();
+  // Access the getJobById and updateJob functions from context
+  const { getJobById, updateJob } = useContext(JobsContext);
+  // Get the job details by using the provided job ID from the context
+  const job = getJobById(id);
+
+  // Initialise form fields with the current job data from the context
   const [title, setTitle] = useState(job.title);
   const [type, setType] = useState(job.type);
   const [location, setLocation] = useState(job.location);
   const [description, setDescription] = useState(job.description);
   const [salary, setSalary] = useState(job.salary);
   const [companyName, setCompanyName] = useState(job.company.name);
-  const [companyDescription, setCompanyDescription] = useState(
-    job.company.description
-  );
+  const [companyDescription, setCompanyDescription] = useState(job.company.description);
   const [contactEmail, setContactEmail] = useState(job.company.contactEmail);
   const [contactPhone, setContactPhone] = useState(job.company.contactPhone);
 
   const navigate = useNavigate();
-  const { id } = useParams();
+  // const { id } = useParams();
 
+  // Handle form submission
   const submitForm = (e) => {
     e.preventDefault();
 
+    // Create the updated job object from the form values
     const updatedJob = {
       id,
       title,
@@ -43,9 +52,13 @@ const EditJobPage = () => {
       },
     };
 
+    // Call the updateJob function from context to update the job details in the context
+    updateJob(updatedJob);
+
     toast.success("Job Updated Successfully");
 
-    return navigate(`/jobs/${id}`);
+    // Navigate to the job details page for the updated job
+    navigate(`/jobs/${id}`);
   };
 
   return (
@@ -59,8 +72,7 @@ const EditJobPage = () => {
             <div className="mb-4">
               <label
                 htmlFor="type"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-gray-700 font-bold mb-2">
                 Job Type
               </label>
               <select
@@ -69,8 +81,7 @@ const EditJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 required
                 value={type}
-                onChange={(e) => setType(e.target.value)}
-              >
+                onChange={(e) => setType(e.target.value)}>
                 <option value="Full-Time">Full-Time</option>
                 <option value="Part-Time">Part-Time</option>
                 <option value="Remote">Remote</option>
@@ -89,14 +100,12 @@ const EditJobPage = () => {
                 placeholder="eg. Beautiful Apartment In Miami"
                 required
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+                onChange={(e) => setTitle(e.target.value)} />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="description"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-gray-700 font-bold mb-2">
                 Description
               </label>
               <textarea
@@ -106,14 +115,13 @@ const EditJobPage = () => {
                 rows="4"
                 placeholder="Add any job duties, expectations, requirements, etc"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
+                onChange={(e) => setDescription(e.target.value)}>
+              </textarea>
             </div>
             <div className="mb-4">
               <label
                 htmlFor="type"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-gray-700 font-bold mb-2">
                 Salary
               </label>
               <select
@@ -122,8 +130,7 @@ const EditJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 required
                 value={salary}
-                onChange={(e) => setSalary(e.target.value)}
-              >
+                onChange={(e) => setSalary(e.target.value)}>
                 <option value="Under $50K">Under $50K</option>
                 <option value="$50K - 60K">$50K - $60K</option>
                 <option value="$60K - 70K">$60K - $70K</option>
@@ -149,15 +156,13 @@ const EditJobPage = () => {
                 placeholder="Company Location"
                 required
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
-              />
+                onChange={(e) => setLocation(e.target.value)} />
             </div>
             <h3 className="text-2xl mb-5">Company Info</h3>
             <div className="mb-4">
               <label
                 htmlFor="company"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-gray-700 font-bold mb-2">
                 Company Name
               </label>
               <input
@@ -167,15 +172,12 @@ const EditJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 placeholder="Company Name"
                 value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-              />
+                onChange={(e) => setCompanyName(e.target.value)} />
             </div>
-
             <div className="mb-4">
               <label
                 htmlFor="company_description"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-gray-700 font-bold mb-2">
                 Company Description
               </label>
               <textarea
@@ -185,14 +187,13 @@ const EditJobPage = () => {
                 rows="4"
                 placeholder="What does your company do?"
                 value={companyDescription}
-                onChange={(e) => setCompanyDescription(e.target.value)}
-              ></textarea>
+                onChange={(e) => setCompanyDescription(e.target.value)}>                  
+              </textarea>
             </div>
             <div className="mb-4">
               <label
                 htmlFor="contact_email"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-gray-700 font-bold mb-2">
                 Contact Email
               </label>
               <input
@@ -203,14 +204,12 @@ const EditJobPage = () => {
                 placeholder="Email address for applicants"
                 required
                 value={contactEmail}
-                onChange={(e) => setContactEmail(e.target.value)}
-              />
+                onChange={(e) => setContactEmail(e.target.value)}/>
             </div>
             <div className="mb-4">
               <label
                 htmlFor="contact_phone"
-                className="block text-gray-700 font-bold mb-2"
-              >
+                className="block text-gray-700 font-bold mb-2">
                 Contact Phone
               </label>
               <input
@@ -220,14 +219,12 @@ const EditJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 placeholder="Optional phone for applicants"
                 value={contactPhone}
-                onChange={(e) => setContactPhone(e.target.value)}
-              />
+                onChange={(e) => setContactPhone(e.target.value)} />
             </div>
             <div>
               <button
                 className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
+                type="submit">
                 Update Job
               </button>
             </div>
@@ -237,4 +234,5 @@ const EditJobPage = () => {
     </section>
   );
 };
+
 export default EditJobPage;

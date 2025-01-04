@@ -48,8 +48,7 @@ const JobPage = () => {
         <p>Job not found</p>
         <Link
           to="/jobs"
-          className="text-teal-500 hover:text-teal-600 flex items-center"
-        >
+          className="text-teal-500 hover:text-teal-600 flex items-center">
           <FaArrowLeft className="mr-2" /> Back to Job Listings
         </Link>
       </div>
@@ -57,13 +56,12 @@ const JobPage = () => {
   }
 
   return (
-    <>   
+    <>
       <section>
         <div className="container m-auto py-6 px-6">
           <Link
             to="/jobs"
-            className="text-teal-500 hover:text-teal-600 flex items-center"
-          >
+            className="text-teal-500 hover:text-teal-600 flex items-center">
             <FaArrowLeft className="mr-2" /> Back to Job Listings
           </Link>
         </div>
@@ -90,8 +88,7 @@ const JobPage = () => {
                 <p className="mb-4">{job.salary} / Year</p>
               </div>
             </main>
-
-            {/* <!-- Sidebar --> */}
+            
             <aside>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-bold mb-6">Company Info</h3>
@@ -112,14 +109,12 @@ const JobPage = () => {
                 <h3 className="text-xl font-bold mb-6">Manage Job</h3>
                 <Link
                   to={`/edit-job/${job.id}`}
-                  className="bg-teal-500 hover:bg-teal-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                >
+                  className="bg-teal-500 hover:bg-teal-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
                   Edit Job
                 </Link>
                 <button
                   onClick={() => onDeleteClick(job.id)}
-                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                >
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
                   Delete Job
                 </button>
               </div>
@@ -130,13 +125,5 @@ const JobPage = () => {
     </>
   );
 };
-
-// const jobLoader = async ({ params }) => {
-//   const res = await fetch(`/api/jobs/${params.id}`);
-//   const data = await res.json();
-//   return data;
-// };
-
-// export { JobPage as default, jobLoader };
 
 export default JobPage;
