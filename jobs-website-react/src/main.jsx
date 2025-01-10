@@ -9,7 +9,7 @@ import JobsProvider from './contexts/jobs.context.jsx';
 createRoot(document.getElementById('root')).render(
   // A tool for highlighting potential problems in the app. Does not render anything visibl, but runs extra checks during development (e.g., checking deprecated APIs).
   <StrictMode>
-    {/* A Context API provider that shares job-related data with child components. */}
+    {/* A Context API provider that shares job-related data with child components. JobsProvider is a custom provider component that creates a context and allows child components to consume it.*/}
     <JobsProvider>
       <App />
     </JobsProvider>
