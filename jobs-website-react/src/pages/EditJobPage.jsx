@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+// The useParams hook in React is used to access parameters from the URL when you're working with React Router
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { JobsContext } from "../contexts/jobs.context";
@@ -29,10 +30,10 @@ const EditJobPage = () => {
   const [contactEmail, setContactEmail] = useState(job.company.contactEmail);
   const [contactPhone, setContactPhone] = useState(job.company.contactPhone);
 
+  // useNavigate hook to navigate to another page after form submission
   const navigate = useNavigate();
-  // const { id } = useParams();
-
-  // Handle form submission
+ 
+  // Prevent page reload on form submission
   const submitForm = (e) => {
     e.preventDefault();
 
@@ -54,7 +55,7 @@ const EditJobPage = () => {
 
     // Call the updateJob function from context to update the job details in the context
     updateJob(updatedJob);
-
+    // Show a success message after the job has been updated
     toast.success("Job Updated Successfully");
 
     // Navigate to the job details page for the updated job

@@ -1,3 +1,4 @@
+// Link from 'react-router-dom': This is used to create links to other routes in your app, enabling client - side routing.It allows navigation to different pages without refreshing the entire page.
 import { Link } from 'react-router-dom';
 import Card from "./Card";
 
@@ -16,6 +17,7 @@ const HomeCards = () => {
                     <Card bg="bg-teal-100">
                         <h2 className="text-2xl font-bold">For Employers</h2>
                         <p className="mt-2 mb-4">List your job to find the perfect developer for the role</p>
+                        {/* A React Router Link that directs the user to the jobs route when clicked. */}
                         <Link
                             to="/add-job"
                             className="inline-block bg-teal-500 text-white rounded-lg px-4 py-2 hover:bg-teal-600">

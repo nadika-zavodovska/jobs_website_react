@@ -8,10 +8,12 @@ const HomePage = () => {
     <>
       <Hero />
       <HomeCards />
+      {/* Displays a list of job postings with a prop (isHome={true} */}
       <JobListings isHome={true} />
+      {/* A link that allows users to navigate to a page with all available jobs. */}
       <ViewAllJobs />
     </>
-  )
-}
+  );
+};
 
 export default HomePage;

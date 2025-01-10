@@ -1,4 +1,5 @@
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
+// Link, useNavigate, and useParams are hooks and components from react - router - dom, which are used for routing and navigation inside the app.
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 // Integrated JobsContext
@@ -13,21 +14,23 @@ import { JobsContext } from "../contexts/jobs.context";
  */
 
 const JobPage = () => {
+  // useNavigate() is used to programmatically navigate to different routes in the app.This will help redirect the user to the job listing page after a job is deleted.
   const navigate = useNavigate();
-  // Retrieve the job by id
+  // useParams() is used to access the dynamic parameters from the URL. In this case, it gets the id of the job that should be displayed.
   const { id } = useParams();
   const { jobs, setJobs } = useContext(JobsContext);
 
-  // Find the job based on the ID from params
+  // The job that matches the id from the URL is retrieved from the jobs array using find()
   const job = jobs.find((job) => job.id === id);
   // The job's ID from the URL is used to look up the matching job in the list of jobs. This means we don’t need to use useLoaderData or fetch the job details from an API.
-  // const job = useLoaderData();
 
+  // The deleteJob function takes a jobId as an argument, filters out the job with the specified id from the jobs array, and updates the state using setJobs.
   const deleteJob = (jobId) => {
     // Filter out the deleted job and update state
     setJobs((prevJobs) => prevJobs.filter((job) => job.id !== jobId));
   };
 
+  // If the user confirms the deletion, the deleteJob function is called to remove the job from the state.
   const onDeleteClick = (jobId) => {
     const confirm = window.confirm(
       "Are you sure you want to delete this listing?"
@@ -42,6 +45,7 @@ const JobPage = () => {
     navigate("/jobs");
   };
 
+  // If no job is found (!job), it shows a "Job not found" message.
   if (!job) {
     return (
       <div className="container m-auto py-6 px-6">
@@ -88,7 +92,7 @@ const JobPage = () => {
                 <p className="mb-4">{job.salary} / Year</p>
               </div>
             </main>
-            
+
             <aside>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-bold mb-6">Company Info</h3>

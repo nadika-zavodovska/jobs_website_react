@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+// This is a React icon from the react - icons library.
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 const NotFoundPage = () => {

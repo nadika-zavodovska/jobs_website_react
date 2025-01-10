@@ -24,7 +24,7 @@ const App = () => {
         <Route index element={<HomePage />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/add-job" element={<AddJobPage />} />
-        {/* :id - dynamic route for editing a specific job, identified by an id parameter */}
+        {/* :id - dynamic route for editing a specific job, identified by an id parameter. We can access the :id parameter in Components with useParams hook from React Router. */}
         <Route path="/edit-job/:id" element={<EditJobPage />} />
         <Route path="/jobs/:id" element={<JobPage />} />
         {/* A catch-all route for undefined paths, rendering the NotFoundPage. */}

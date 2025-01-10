@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 import JobsJson from "../jobs.json";
@@ -27,7 +28,7 @@ export default function JobsProvider({ children }) {
       {children}
     </JobsContext.Provider>
   );
-}
+};
 
 // JobsProvider.propTypes defines the type of the children prop. It ensures that children is a valid React node and that it’s required. If children is not provided, React will display a warning during development.
 JobsProvider.propTypes = {

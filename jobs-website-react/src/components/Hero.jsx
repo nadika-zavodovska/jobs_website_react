@@ -1,4 +1,6 @@
-const Hero = ({ title = "Become a React Dev", subtitle = "Find the React job that fits your sill set" }) => {
+// The component receives title and subtitle as props.If no values are passed for these props, the component will use the default values
+// eslint-disable-next-line react/prop-types
+const Hero = ({ title = "Become a React Dev", subtitle = "Find the React job that fits your skill set" }) => {
     return (
         <section className="bg-teal-700 py-20 mb-4">
             <div
@@ -13,7 +15,7 @@ const Hero = ({ title = "Become a React Dev", subtitle = "Find the React job tha
                 </div>
             </div>
         </section >
-    )
-}
+    );
+};
 
 export default Hero;

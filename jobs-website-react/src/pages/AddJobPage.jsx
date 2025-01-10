@@ -1,10 +1,13 @@
 import { useContext, useState } from "react";
+// This is a hook from react - router - dom that allows programmatic navigation.It's used to navigate to a different route after the form submission.
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { JobsContext } from "../contexts/jobs.context";
 
 const AddJobPage = () => {
+  // Get setJobs function from context
   const { setJobs } = useContext(JobsContext);
+  // Set states for jobs
   const [title, setTitle] = useState("");
   const [type, setType] = useState("Full-Time");
   const [location, setLocation] = useState("");
@@ -15,11 +18,13 @@ const AddJobPage = () => {
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
 
+  // Navigate to a new page after job is added
   const navigate = useNavigate();
-
+  // ensures that the page does not reload when the form is submitted.
   const submitForm = (e) => {
     e.preventDefault();
 
+    // It constructs the new job 
     const newJob = {
       // Generate a unique ID
       id: new Date().toISOString(),
@@ -35,9 +40,10 @@ const AddJobPage = () => {
         contactPhone,
       },
     };
+
     // Update the context with the new job
     setJobs((prevJobs) => [...prevJobs, newJob,]);
-
+    // toast.success("Job Added Successfully") triggers a toast notification to inform the user that the job has been successfully added.
     toast.success("Job Added Successfully");
 
     // Redirect to the new job details page
@@ -199,6 +205,7 @@ const AddJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 placeholder="Optional phone for applicants"
                 value={contactPhone}
+                // e.target.value gives the value the user has typed in the input field
                 onChange={(e) => setContactPhone(e.target.value)} />
             </div>
             <div>
