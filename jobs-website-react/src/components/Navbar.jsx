@@ -4,7 +4,7 @@ import logo from "../assets/images/job-search.png";
 
 const Navbar = () => {
     // The arrow function takes an object(with isActive as a property) and returns a string containing the CSS classes.
-    const linkClass = ({ isActive }) => isActive ? 'bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' : 'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2';
+    const linkClass = ({ isActive }) => isActive ? 'bg-emerald-900 text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2' : 'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2';
     return (
         <nav className="bg-teal-700 border-b border-teal-500">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
