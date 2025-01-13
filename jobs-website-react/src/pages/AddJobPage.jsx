@@ -42,7 +42,7 @@ const AddJobPage = () => {
     };
 
     // Update the context with the new job
-    setJobs((prevJobs) => [...prevJobs, newJob,]);
+    setJobs((prevJobs) => [newJob, ...prevJobs]);
     // toast.success("Job Added Successfully") triggers a toast notification to inform the user that the job has been successfully added.
     toast.success("Job Added Successfully");
 

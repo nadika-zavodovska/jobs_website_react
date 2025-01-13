@@ -17,7 +17,7 @@ const EditJobPage = () => {
   // Access the getJobById and updateJob functions from context
   const { getJobById, updateJob } = useContext(JobsContext);
   // Get the job details by using the provided job ID from the context
-  const job = getJobById(id);
+  const job = getJobById(id);  
 
   // Initialise form fields with the current job data from the context
   const [title, setTitle] = useState(job.title);

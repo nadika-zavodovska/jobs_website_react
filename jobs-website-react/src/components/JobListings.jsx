@@ -40,7 +40,7 @@ const JobListings = ({ isHome = false }) => {
   );
 };
 
-// propTypes is used to enforce that the isHome prop passed to the JobListings component must be a boolean.
+// propTypes is used to enforce that the isHome props passed to the JobListings component must be a boolean. Because I use JavaScript (not TypeScript) to prevent warnings.
 
 JobListings.propTypes = {
   isHome: PropTypes.bool,
