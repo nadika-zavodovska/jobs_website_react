@@ -19,12 +19,12 @@ import NotFoundPage from "./pages/NotFoundPage";
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      // The component that wraps all child routes. MainLayout contains navbar, outlet etc. components.
+      // The layout component (The component) that wraps all child routes. MainLayout contains navbar, outlet etc. components.
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/add-job" element={<AddJobPage />} />
-        {/* :id - dynamic route for editing a specific job, identified by an id parameter. We can access the :id parameter in Components with useParams hook from React Router. */}
+        {/* :id - dynamic route for editing a specific job, identified by an id parameter. We can access the :id parameter in Components with useParams() hook from React Router. */}
         <Route path="/edit-job/:id" element={<EditJobPage />} />
         <Route path="/jobs/:id" element={<JobPage />} />
         {/* A catch-all route for undefined paths, rendering the NotFoundPage. */}
